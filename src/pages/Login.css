@@ -1,0 +1,33 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  background-color: var(--background-color);
+}
+.loginContainer h2 {
+  font-size: var(--font-size-title);
+  margin-bottom: 20px;
+}
+.insertForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: solid 1px var(--border-color);
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+}
+.insertForm label {
+  font-size: 1.2rem;
+}
+.insertForm input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: solid 1px var(--border-color);
+}
+.loginButton {
+  width: 50%;
+  align-self: flex-end;
+}

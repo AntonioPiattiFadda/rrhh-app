@@ -1,0 +1,6 @@
+//NOTE - 
+Posibilidad de liquidar Por fecha Particular.
+Agregar horarios que deberian hacer los emPleados.
+agregar grafico con hoirarios de entrada.
+Posibildad de exPortar en excel y Pdf.
+Calcular liquidacion parcial

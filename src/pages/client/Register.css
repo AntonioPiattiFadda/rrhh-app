@@ -1,0 +1,24 @@
+.homeContainer {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.insertNameForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: solid 1px var(--border-color);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.buttonContainer button {
+  width: 50%;
+}

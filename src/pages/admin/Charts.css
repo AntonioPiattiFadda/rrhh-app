@@ -1,0 +1,6 @@
+.autocompleteContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 10px 0;
+}

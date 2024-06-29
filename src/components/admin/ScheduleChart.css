@@ -1,0 +1,73 @@
+.schedule-chart {
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.schedule-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.schedule-name {
+  width: 100px; /* Ancho fijo del schedule-name */
+  height: 70px; /* Altura aumentada para el nombre y el rol */
+  position: relative; /* Necesario para el posicionamiento absoluto del rol */
+}
+
+.role-label {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  background-color: #9ad3bc; /* Color de fondo pastel para roles iguales */
+  padding: 2px 5px; /* Espaciado interno */
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.employee-name {
+  margin-top: 15px;
+  text-overflow: ellipsis;
+}
+
+.schedule-bar-container {
+  position: relative;
+  flex-grow: 1;
+  height: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.hour-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #ccc;
+}
+
+.schedule-bar {
+  position: absolute;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.hour-reference {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  width: calc(
+    100% - 100px
+  ); /* Ajustar según el ancho de schedule-name + margen */
+  margin-left: 100px; /* Igual al ancho de schedule-name */
+}
+
+.hour-label {
+  font-size: 12px;
+  color: #666;
+  flex: 1;
+}

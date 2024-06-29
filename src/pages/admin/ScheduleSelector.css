@@ -1,0 +1,12 @@
+.schedulesSelectorContainer {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.chart-container {
+  width: 100%;
+  margin-top: 20px;
+}
