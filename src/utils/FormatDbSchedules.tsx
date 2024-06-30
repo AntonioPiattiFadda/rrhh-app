@@ -162,9 +162,12 @@ const calculatePay = (
 
 export function getWeekSchedule(
   week: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   employee: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): { [day: string]: any[] } {
   // Crear un objeto para almacenar los horarios por día de la semana
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const weekSchedule: { [day: string]: any[] } = {};
 
   // Definir una expresión regular para encontrar fechas de entrada y salida en el formato `schedule_in_<date>` y `schedule_out_<date>`
@@ -180,7 +183,7 @@ export function getWeekSchedule(
 
     if (match) {
       // Extraer el tipo de horario (entrada o salida) y la fecha de la clave
-      const [, type, date] = match;
+      const [, type] = match;
 
       // Convertir la fecha a un objeto `Date`
       const timestamp = employee[key];
@@ -237,9 +240,10 @@ export function getWeekSchedule(
   return weekSchedule;
 }
 
-export function formatWeeklySchedules(data) {
-  const horariosPorDia = {};
-  console.log(data);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function formatWeeklySchedules(data: any) {
+  const horariosPorDia: { [day: string]: string } = {};
+  // console.log(data);
 
   // Definir un array con los nombres de los días de la semana
   const diasSemana = [
@@ -259,18 +263,23 @@ export function formatWeeklySchedules(data) {
     // Verificar si hay entradas para este día
     if (entries && entries.length > 0) {
       // Ordenar las entradas por tipo y luego por tiempo
-      entries.sort((a, b) => {
-        if (a.type === 'in' && b.type === 'out') return -1;
-        if (a.type === 'out' && b.type === 'in') return 1;
-        return a.time.seconds - b.time.seconds;
-      });
+      entries.sort(
+        (
+          a: { type: string; time: { seconds: number } },
+          b: { type: string; time: { seconds: number } }
+        ) => {
+          if (a.type === 'in' && b.type === 'out') return -1;
+          if (a.type === 'out' && b.type === 'in') return 1;
+          return a.time.seconds - b.time.seconds;
+        }
+      );
 
       // Construir el string con los horarios en el formato deseado
       let horarioString = '';
       let startTime = '';
       let endTime = '';
 
-      entries.forEach((entry) => {
+      entries.forEach((entry: { type: string; time: { seconds: number } }) => {
         if (entry.type === 'in') {
           startTime = new Date(entry.time.seconds * 1000).toLocaleTimeString(
             [],
@@ -303,10 +312,13 @@ export function formatWeeklySchedules(data) {
   return horariosPorDia;
 }
 
-export function formatForDbWeeklySchedules(schedules, selectedWeek) {
-  console.log(schedules, selectedWeek);
+export function formatForDbWeeklySchedules(
+  schedules: WeeklyScheduleType[],
+  selectedWeek: string
+) {
+  // console.log(schedules, selectedWeek);
 
-  let formattedSchedules = [];
+  const formattedSchedules: { [x: string]: { [x: string]: Timestamp } }[] = [];
 
   // Extract year and week number from the selected week
   const [yearStr, weekNumberStr] = selectedWeek.split('-W');
@@ -315,19 +327,23 @@ export function formatForDbWeeklySchedules(schedules, selectedWeek) {
 
   // Get the first day of the selected week
   const firstDayOfWeek = getFirstDayOfWeekIso(year, weekNumber);
-  console.log(firstDayOfWeek);
+  // console.log(firstDayOfWeek);
 
   // Loop through all employees in the schedules
   for (const employee of schedules) {
-    console.log(employee);
+    // console.log(employee);
 
     // Loop through each day of the week in the employee's schedule
     for (const day in employee.schedule) {
-      console.log(day);
+      // console.log(day);
 
+      // eslint-disable-next-line no-prototype-builtins
       if (employee.schedule.hasOwnProperty(day)) {
+        //FIXME - El TS quedo deshabilitado
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         const scheduleValue = employee.schedule[day];
-        console.log(day, scheduleValue);
+        // console.log(day, scheduleValue);
 
         // Check if the schedule is not 'S/A' or empty ''
         if (scheduleValue !== 'S/A' && scheduleValue !== '') {
@@ -354,7 +370,7 @@ export function formatForDbWeeklySchedules(schedules, selectedWeek) {
             currentDay.getDate(),
             endTime
           );
-          console.log(startTimeDate, endTimeDate);
+          // console.log(startTimeDate, endTimeDate);
 
           // Create the keys for schedule_in and schedule_out
           const scheduleInKey = `schedule_in_${getFormattedDate(currentDay)}`;
@@ -399,8 +415,8 @@ export function formatForDbWeeklySchedules(schedules, selectedWeek) {
 }
 
 // Function to get the day number (0 = Monday, 1 = Tuesday, ..., 6 = Sunday)
-function getDayNumber(day) {
-  const daysMap = {
+function getDayNumber(day: string) {
+  const daysMap: { [key: string]: number } = {
     Monday: 0,
     Tuesday: 1,
     Wednesday: 2,
@@ -412,7 +428,7 @@ function getDayNumber(day) {
   return daysMap[day];
 }
 
-function getFirstDayOfWeekIso(year, weekNumber) {
+function getFirstDayOfWeekIso(year: number, weekNumber: number) {
   // Create a date object for January 4th of the given year
   const jan4 = new Date(year, 0, 4);
 
@@ -439,7 +455,7 @@ function getFirstDayOfWeekIso(year, weekNumber) {
 }
 
 // Function to get the formatted date in YYYY-MM-DD
-function getFormattedDate(date) {
+function getFormattedDate(date: Date) {
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const day = date.getDate().toString().padStart(2, '0');
@@ -447,7 +463,13 @@ function getFormattedDate(date) {
 }
 
 // Function to format the date with time in the desired format
-function formatDateWithTime(year, month, day, time) {
+function formatDateWithTime(
+  year: number,
+  month: number,
+  day: number,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  time: { split: (arg0: string) => [any, any] }
+) {
   const [hourStr, minuteStr] = time.split(':');
   const hour = parseInt(hourStr, 10);
   const minute = parseInt(minuteStr, 10);
@@ -459,10 +481,10 @@ function formatDateWithTime(year, month, day, time) {
 }
 
 // Function to extract date from a string
-function extractDateFromString(dateTimeString) {
-  const delimiterIndex = dateTimeString.search(/[^0-9-]/);
-  if (delimiterIndex === -1) {
-    return dateTimeString;
-  }
-  return dateTimeString.slice(0, delimiterIndex);
-}
+// function extractDateFromString(dateTimeString: string) {
+//   const delimiterIndex = dateTimeString.search(/[^0-9-]/);
+//   if (delimiterIndex === -1) {
+//     return dateTimeString;
+//   }
+//   return dateTimeString.slice(0, delimiterIndex);
+// }

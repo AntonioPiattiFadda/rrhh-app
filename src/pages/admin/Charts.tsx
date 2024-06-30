@@ -6,7 +6,6 @@ import { EmployeesType } from '../../types';
 import './Charts.css';
 import SalaryChart from '../../components/admin/charts/salaryChart';
 import Loader from '../../components/client/loader/Loader';
-import BasicDatePicker from '../../components/admin/BasicDataPicker';
 
 const FILTERVALUES = {
   TYPEOFINFO: {

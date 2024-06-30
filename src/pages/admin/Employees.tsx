@@ -45,17 +45,17 @@ const Employees = () => {
     getEmployeesSchedules(uid)
       .then((res) => {
         setLoading(false);
-        console.log(res);
+        // console.log(res);
 
         setEmployees(res);
         res.map((employee) => {
-          console.log(employee);
+          // console.log(employee);
 
           const scheduleByMonth = groupSchedulesByMonth(
             employee,
             employee.hour_value
           );
-          console.log(scheduleByMonth);
+          // console.log(scheduleByMonth);
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const history: { date: string; employeeId: any; amount: string }[] =
@@ -77,7 +77,7 @@ const Employees = () => {
               356,
               16.0,
               49,
-              3.9,
+              3.9, 
               1.5,
               employee.nickname,
               employee.password,

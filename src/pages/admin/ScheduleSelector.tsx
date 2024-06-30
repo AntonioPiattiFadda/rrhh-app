@@ -295,7 +295,7 @@ const ScheduleSelector = () => {
         {isDataModified && (
           <Button
             sx={{ marginLeft: 2 }}
-            variant="contained"
+            variant="contained" 
             onClick={handleSaveChanges}
           >
             Aceptar cambios
