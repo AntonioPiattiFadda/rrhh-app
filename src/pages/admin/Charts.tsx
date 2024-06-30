@@ -69,30 +69,30 @@ const Charts = () => {
     }
   };
 
-  const data1Ingreso = [
-    { value: 9.56, time: 1642425322 }, // 10:00 AM
-    //   { value: 10.02, time: 1642511722 },
-    //   { value: 10.03, time: 1642598122 },
-    { value: 10.16, time: 1642684522 },
-    { value: 9.56, time: 1642770922 },
-    { value: 9.59, time: 1642857322 },
-    { value: 15.54, time: 1642943722 },
-    { value: 15.59, time: 1643030122 },
-    { value: 16.01, time: 1643116522 },
-    { value: 16.16, time: 1643202922 },
-  ];
-  const data1Egreso = [
-    { value: 14.15, time: 1642425322 }, // 10:00 AM
-    //   { value: 10, time: 1642511722 },
-    //   { value: 10, time: 1642598122 },
-    { value: 14.35, time: 1642684522 },
-    { value: 15.01, time: 1642770922 },
-    { value: 15.05, time: 1642857322 },
-    { value: 19, time: 1642943722 },
-    { value: 19, time: 1643030122 },
-    { value: 19, time: 1643116522 },
-    { value: 19, time: 1643202922 },
-  ];
+  // const data1Ingreso = [
+  //   { value: 9.56, time: 1642425322 }, // 10:00 AM
+  //   //   { value: 10.02, time: 1642511722 },
+  //   //   { value: 10.03, time: 1642598122 },
+  //   { value: 10.16, time: 1642684522 },
+  //   { value: 9.56, time: 1642770922 },
+  //   { value: 9.59, time: 1642857322 },
+  //   { value: 15.54, time: 1642943722 },
+  //   { value: 15.59, time: 1643030122 },
+  //   { value: 16.01, time: 1643116522 },
+  //   { value: 16.16, time: 1643202922 },
+  // ];
+  // const data1Egreso = [
+  //   { value: 14.15, time: 1642425322 }, // 10:00 AM
+  //   //   { value: 10, time: 1642511722 },
+  //   //   { value: 10, time: 1642598122 },
+  //   { value: 14.35, time: 1642684522 },
+  //   { value: 15.01, time: 1642770922 },
+  //   { value: 15.05, time: 1642857322 },
+  //   { value: 19, time: 1642943722 },
+  //   { value: 19, time: 1643030122 },
+  //   { value: 19, time: 1643116522 },
+  //   { value: 19, time: 1643202922 },
+  // ];
 
   if (loading) {
     return (
