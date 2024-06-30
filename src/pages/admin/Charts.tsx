@@ -1,10 +1,10 @@
 import { Autocomplete, TextField } from '@mui/material';
-import SchedulesChart from '../../components/admin/charts/schedulesChart';
+// import SchedulesChart from '../../components/admin/charts/schedulesChart';
 import { getEmployees } from '../../services';
 import { useEffect, useState } from 'react';
 import { EmployeesType } from '../../types';
 import './Charts.css';
-import SalaryChart from '../../components/admin/charts/salaryChart';
+// import SalaryChart from '../../components/admin/charts/salaryChart';
 import Loader from '../../components/client/loader/Loader';
 
 const FILTERVALUES = {
@@ -106,7 +106,7 @@ const Charts = () => {
   return (
     <div className="employeesContainer">
       <h1>Gráficos</h1>
-      <SchedulesChart data1Ingreso={data1Ingreso} data1Egreso={data1Egreso} />
+      {/* <SchedulesChart data1Ingreso={data1Ingreso} data1Egreso={data1Egreso} /> */}
       <div className="autocompleteContainer">
         <Autocomplete
           id="employeeName"
@@ -148,12 +148,12 @@ const Charts = () => {
         )}
       </div>
       {/* <BasicDatePicker /> */}
-      {filters.typeOfInfo === FILTERVALUES.TYPEOFINFO.SCHEDULES && (
+      {/* {filters.typeOfInfo === FILTERVALUES.TYPEOFINFO.SCHEDULES && (
         <SchedulesChart data1Ingreso={data1Ingreso} data1Egreso={data1Egreso} />
       )}
       {filters.typeOfInfo === FILTERVALUES.TYPEOFINFO.SALARY && (
         <SalaryChart data1Ingreso={data1Ingreso} data1Egreso={data1Egreso} />
-      )}
+      )} */}
     </div>
   );
 };

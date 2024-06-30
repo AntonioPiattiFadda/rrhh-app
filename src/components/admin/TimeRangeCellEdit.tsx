@@ -31,6 +31,7 @@ export const TimeRangeCellEdit = ({
 
   const commitChange = (newStartTime: string, newEndTime: string) => {
     const newValue = `${newStartTime} - ${newEndTime}`;
+    if (!handleCellEditCommit) return;
     handleCellEditCommit({
       id,
       field,
