@@ -95,11 +95,12 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                       <TableCell component="th" scope="row">
                         {historyRow.date}
                       </TableCell>
-                      <TableCell>{historyRow.employeeId}</TableCell>
+                      <TableCell>{historyRow.totalHoursWorked}</TableCell>
                       <TableCell align="right">{historyRow.amount}</TableCell>
                       <TableCell align="right">
-                        {Math.round(historyRow.amount * row.employeeId * 100) /
-                          100}
+                        {Math.round(
+                          historyRow.amount * historyRow.employeeId * 100
+                        ) / 100}
                       </TableCell>
                       <TableCell align="right">
                         <Button>Liquidar</Button>
