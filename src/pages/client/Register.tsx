@@ -88,7 +88,7 @@ const Home = () => {
   // const handleRegisterDate = async () => {
   if (loading) {
     return (
-      <div className="homeContainer"> 
+      <div className="homeContainer">
         {/* <Box
           className="insertNameForm"
           style={{

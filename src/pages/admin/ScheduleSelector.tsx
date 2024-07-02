@@ -1,12 +1,12 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { getEmployees, updateEmployeeSchedulesByWeek } from '../../services';
 import Loader from '../../components/client/loader/Loader';
-import { DataGrid } from '@mui/x-data-grid';
+// import { DataGrid } from '@mui/x-data-grid';
 import { TextField, Typography, Container, Box, Button } from '@mui/material';
-import ScheduleChart from '../../components/admin/ScheduleChart';
-import { TimeRangeCellEdit } from '../../components/admin/TimeRangeCellEdit';
-import DaySelector from '../../components/admin/DaySelector';
-import { ScheduleDataTableRowType, WeeklyScheduleType } from '../../types';
+// import ScheduleChart from '../../components/admin/ScheduleChart';
+// import { TimeRangeCellEdit } from '../../components/admin/TimeRangeCellEdit';
+// import DaySelector from '../../components/admin/DaySelector';>
+import { WeeklyScheduleType } from '../../types';
 import {
   formatForDbWeeklySchedules,
   formatWeeklySchedules,
@@ -19,8 +19,8 @@ const ScheduleSelector = () => {
   const [loading, setLoading] = useState(true);
   const [schedules, setSchedules] = useState<WeeklyScheduleType[]>([]);
   const [selectedWeek, setSelectedWeek] = useState('2024-W25');
-  const [selectedDay, setSelectedDay] = useState('monday');
-  const [rows, setRows] = useState<ScheduleDataTableRowType[]>([]);
+  // const [selectedDay, setSelectedDay] = useState('monday');
+  // const [rows, setRows] = useState<ScheduleDataTableRowType[]>([]);
   const [isDataModified, setIsDataModified] = useState(true);
   const uid = sessionStorage.getItem('uid');
   useEffect(() => {
@@ -64,176 +64,178 @@ const ScheduleSelector = () => {
             sunday: employee.schedule.Sunday || 'S/A',
           };
         });
-        setRows(newRows);
+        console.log(newRows);
+
+        // setRows(newRows);
       })
       .catch((error) => {
         console.error('Error al obtener los empleados:', error);
       });
   }, [selectedWeek, uid]);
 
-  const columns = [
-    { field: 'name', headerName: 'Empleado', width: 150 },
-    {
-      field: 'monday',
-      headerName: 'Lunes',
-      width: 200,
-      editable: true,
-      renderEditCell: (params: {
-        id: string;
-        field: string;
-        value: string;
-        api: { updateRows: (arg0: { id: string; data: unknown }) => void };
-      }) => (
-        <TimeRangeCellEdit
-          handleCellEditCommit={handleCellEditCommit}
-          {...params}
-        />
-      ),
-    },
-    {
-      field: 'tuesday',
-      headerName: 'Martes',
-      width: 200,
-      editable: true,
-      renderEditCell: (params: {
-        id: string;
-        field: string;
-        value: string;
-        api: { updateRows: (arg0: { id: string; data: unknown }) => void };
-      }) => (
-        <TimeRangeCellEdit
-          handleCellEditCommit={handleCellEditCommit}
-          {...params}
-        />
-      ),
-    },
-    {
-      field: 'wednesday',
-      headerName: 'Miércoles',
-      width: 200,
-      editable: true,
-      renderEditCell: (params: {
-        id: string;
-        field: string;
-        value: string;
-        api: { updateRows: (arg0: { id: string; data: unknown }) => void };
-      }) => (
-        <TimeRangeCellEdit
-          handleCellEditCommit={handleCellEditCommit}
-          {...params}
-        />
-      ),
-    },
-    {
-      field: 'thursday',
-      headerName: 'Jueves',
-      width: 200,
-      editable: true,
-      renderEditCell: (params: {
-        id: string;
-        field: string;
-        value: string;
-        api: { updateRows: (arg0: { id: string; data: unknown }) => void };
-      }) => (
-        <TimeRangeCellEdit
-          handleCellEditCommit={handleCellEditCommit}
-          {...params}
-        />
-      ),
-    },
-    {
-      field: 'friday',
-      headerName: 'Viernes',
-      width: 200,
-      editable: true,
-      renderEditCell: (params: {
-        id: string;
-        field: string;
-        value: string;
-        api: { updateRows: (arg0: { id: string; data: unknown }) => void };
-      }) => (
-        <TimeRangeCellEdit
-          handleCellEditCommit={handleCellEditCommit}
-          {...params}
-        />
-      ),
-    },
-    {
-      field: 'saturday',
-      headerName: 'Sábado',
-      width: 150,
-      editable: true,
-      renderEditCell: (params: {
-        id: string;
-        field: string;
-        value: string;
-        api: { updateRows: (arg0: { id: string; data: unknown }) => void };
-      }) => (
-        <TimeRangeCellEdit
-          handleCellEditCommit={handleCellEditCommit}
-          {...params}
-        />
-      ),
-    },
-    {
-      field: 'sunday',
-      headerName: 'Domingo',
-      width: 150,
-      editable: true,
-      renderEditCell: (params: {
-        id: string;
-        field: string;
-        value: string;
-        api: { updateRows: (arg0: { id: string; data: unknown }) => void };
-      }) => (
-        <TimeRangeCellEdit
-          handleCellEditCommit={handleCellEditCommit}
-          {...params}
-        />
-      ),
-    },
-  ];
+  // const columns = [
+  //   { field: 'name', headerName: 'Empleado', width: 150 },
+  //   {
+  //     field: 'monday',
+  //     headerName: 'Lunes',
+  //     width: 200,
+  //     editable: true,
+  //     renderEditCell: (params: {
+  //       id: string;
+  //       field: string;
+  //       value: string;
+  //       api: { updateRows: (arg0: { id: string; data: unknown }) => void };
+  //     }) => (
+  //       <TimeRangeCellEdit
+  //         handleCellEditCommit={handleCellEditCommit}
+  //         {...params}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     field: 'tuesday',
+  //     headerName: 'Martes',
+  //     width: 200,
+  //     editable: true,
+  //     renderEditCell: (params: {
+  //       id: string;
+  //       field: string;
+  //       value: string;
+  //       api: { updateRows: (arg0: { id: string; data: unknown }) => void };
+  //     }) => (
+  //       <TimeRangeCellEdit
+  //         handleCellEditCommit={handleCellEditCommit}
+  //         {...params}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     field: 'wednesday',
+  //     headerName: 'Miércoles',
+  //     width: 200,
+  //     editable: true,
+  //     renderEditCell: (params: {
+  //       id: string;
+  //       field: string;
+  //       value: string;
+  //       api: { updateRows: (arg0: { id: string; data: unknown }) => void };
+  //     }) => (
+  //       <TimeRangeCellEdit
+  //         handleCellEditCommit={handleCellEditCommit}
+  //         {...params}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     field: 'thursday',
+  //     headerName: 'Jueves',
+  //     width: 200,
+  //     editable: true,
+  //     renderEditCell: (params: {
+  //       id: string;
+  //       field: string;
+  //       value: string;
+  //       api: { updateRows: (arg0: { id: string; data: unknown }) => void };
+  //     }) => (
+  //       <TimeRangeCellEdit
+  //         handleCellEditCommit={handleCellEditCommit}
+  //         {...params}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     field: 'friday',
+  //     headerName: 'Viernes',
+  //     width: 200,
+  //     editable: true,
+  //     renderEditCell: (params: {
+  //       id: string;
+  //       field: string;
+  //       value: string;
+  //       api: { updateRows: (arg0: { id: string; data: unknown }) => void };
+  //     }) => (
+  //       <TimeRangeCellEdit
+  //         handleCellEditCommit={handleCellEditCommit}
+  //         {...params}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     field: 'saturday',
+  //     headerName: 'Sábado',
+  //     width: 150,
+  //     editable: true,
+  //     renderEditCell: (params: {
+  //       id: string;
+  //       field: string;
+  //       value: string;
+  //       api: { updateRows: (arg0: { id: string; data: unknown }) => void };
+  //     }) => (
+  //       <TimeRangeCellEdit
+  //         handleCellEditCommit={handleCellEditCommit}
+  //         {...params}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     field: 'sunday',
+  //     headerName: 'Domingo',
+  //     width: 150,
+  //     editable: true,
+  //     renderEditCell: (params: {
+  //       id: string;
+  //       field: string;
+  //       value: string;
+  //       api: { updateRows: (arg0: { id: string; data: unknown }) => void };
+  //     }) => (
+  //       <TimeRangeCellEdit
+  //         handleCellEditCommit={handleCellEditCommit}
+  //         {...params}
+  //       />
+  //     ),
+  //   },
+  // ];
 
-  let debounceTimeout: NodeJS.Timeout;
-  const handleCellEditCommit = (params: {
-    id: string;
-    field: string;
-    value: string;
-  }) => {
-    if (debounceTimeout) {
-      clearTimeout(debounceTimeout);
-    }
-    debounceTimeout = setTimeout(() => {
-      const updatedSchedules = [...schedules];
-      const index: number = updatedSchedules.findIndex(
-        (row) => row.id === params.id
-      );
-      if (index > -1) {
-        //FIXME - El TS quedo deshabilitado
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        updatedSchedules[index].schedule[
-          params.field.charAt(0).toUpperCase() + params.field.slice(1)
-        ] = params.value;
-        setRows(
-          updatedSchedules.map((employee) => ({
-            id: employee.id,
-            name: employee.name,
-            role: employee.role,
-            monday: employee.schedule.Monday || 'S/A',
-            tuesday: employee.schedule.Tuesday || 'S/A',
-            wednesday: employee.schedule.Wednesday || 'S/A',
-            thursday: employee.schedule.Thursday || 'S/A',
-            friday: employee.schedule.Friday || 'S/A',
-            saturday: employee.schedule.Saturday || 'S/A',
-            sunday: employee.schedule.Sunday || 'S/A',
-          }))
-        );
-        setSchedules(updatedSchedules);
-        setIsDataModified(true);
-      }
-    }, 500);
-  };
+  // let debounceTimeout: NodeJS.Timeout;
+  // const handleCellEditCommit = (params: {
+  //   id: string;
+  //   field: string;
+  //   value: string;
+  // }) => {
+  //   if (debounceTimeout) {
+  //     clearTimeout(debounceTimeout);
+  //   }
+  //   debounceTimeout = setTimeout(() => {
+  //     const updatedSchedules = [...schedules];
+  //     const index: number = updatedSchedules.findIndex(
+  //       (row) => row.id === params.id
+  //     );
+  //     if (index > -1) {
+  //       //FIXME - El TS quedo deshabilitado
+  //       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //       // @ts-expect-error
+  //       updatedSchedules[index].schedule[
+  //         params.field.charAt(0).toUpperCase() + params.field.slice(1)
+  //       ] = params.value;
+  //       setRows(
+  //         updatedSchedules.map((employee) => ({
+  //           id: employee.id,
+  //           name: employee.name,
+  //           role: employee.role,
+  //           monday: employee.schedule.Monday || 'S/A',
+  //           tuesday: employee.schedule.Tuesday || 'S/A',
+  //           wednesday: employee.schedule.Wednesday || 'S/A',
+  //           thursday: employee.schedule.Thursday || 'S/A',
+  //           friday: employee.schedule.Friday || 'S/A',
+  //           saturday: employee.schedule.Saturday || 'S/A',
+  //           sunday: employee.schedule.Sunday || 'S/A',
+  //         }))
+  //       );
+  //       setSchedules(updatedSchedules);
+  //       setIsDataModified(true);
+  //     }
+  //   }, 500);
+  // };
 
   const handleSaveChanges = () => {
     setIsDataModified(false);
@@ -253,11 +255,11 @@ const ScheduleSelector = () => {
       });
   };
 
-  const handleDayChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setSelectedDay(e.target.value);
-  };
+  // const handleDayChange = (e: {
+  //   target: { value: SetStateAction<string> };
+  // }) => {
+  //   setSelectedDay(e.target.value);
+  // };
 
   const handleWeekChange = (e: {
     target: { value: SetStateAction<string> };
@@ -295,14 +297,14 @@ const ScheduleSelector = () => {
         {isDataModified && (
           <Button
             sx={{ marginLeft: 2 }}
-            variant="contained" 
+            variant="contained"
             onClick={handleSaveChanges}
           >
             Aceptar cambios
           </Button>
         )}
       </Box>
-      <Box sx={{ height: 400, width: '100%', marginTop: 2 }}>
+      {/* <Box sx={{ height: 400, width: '100%', marginTop: 2 }}>
         <DataGrid
           rows={rows}
           //FIXME - El TS quedo deshabilitado
@@ -326,7 +328,7 @@ const ScheduleSelector = () => {
           schedules={rows}
           selectedDay={selectedDay}
         />
-      </Box>
+      </Box> */}
     </Container>
   );
 };
