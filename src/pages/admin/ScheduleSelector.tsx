@@ -2,7 +2,7 @@ import { SetStateAction, useEffect, useState } from 'react';
 import { getEmployees, updateEmployeeSchedulesByWeek } from '../../services';
 import Loader from '../../components/client/loader/Loader';
 import { DataGrid } from '@mui/x-data-grid';
-import { TextField, Typography, Container, Box, Button } from '@mui/material';
+import { TextField, Typography, Box, Button } from '@mui/material';
 import ScheduleChart from '../../components/admin/ScheduleChart';
 import { TimeRangeCellEdit } from '../../components/admin/TimeRangeCellEdit';
 import DaySelector from '../../components/admin/DaySelector';
@@ -281,7 +281,7 @@ const ScheduleSelector = () => {
   }
 
   return (
-    <Container className="schedulesSelectorContainer">
+    <div className="schedulesSelectorContainer" >
       <Typography variant="h4" component="h1" gutterBottom>
         Selector de Horarios
       </Typography>
@@ -329,7 +329,7 @@ const ScheduleSelector = () => {
           selectedDay={selectedDay}
         />
       </Box>
-    </Container>
+    </div>
   );
 };
 
