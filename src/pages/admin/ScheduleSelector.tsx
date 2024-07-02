@@ -21,7 +21,7 @@ const ScheduleSelector = () => {
   const [selectedWeek, setSelectedWeek] = useState('2024-W25');
   const [selectedDay, setSelectedDay] = useState('monday');
   const [rows, setRows] = useState<ScheduleDataTableRowType[]>([]);
-  const [isDataModified, setIsDataModified] = useState(true);
+  const [isDataModified, setIsDataModified] = useState(false);
   const uid = sessionStorage.getItem('uid');
   useEffect(() => {
     const currentWeek = getCurrentWeek();
@@ -236,7 +236,6 @@ const ScheduleSelector = () => {
   };
 
   const handleSaveChanges = () => {
-    setIsDataModified(false);
     console.log(schedules);
     const formattedForDbWeeklySchedules = formatForDbWeeklySchedules(
       schedules,
@@ -246,7 +245,10 @@ const ScheduleSelector = () => {
 
     if (!uid) return;
     updateEmployeeSchedulesByWeek(uid, formattedForDbWeeklySchedules)
-      .then(() => alert('Cambios guardados exitosamente'))
+      .then(() => {
+        setIsDataModified(false);
+        alert('Cambios guardados exitosamente');
+      })
       .catch((error) => {
         console.error('Error al guardar los cambios:', error);
         alert('Error al guardar los cambios');
@@ -295,7 +297,7 @@ const ScheduleSelector = () => {
         {isDataModified && (
           <Button
             sx={{ marginLeft: 2 }}
-            variant="contained" 
+            variant="contained"
             onClick={handleSaveChanges}
           >
             Aceptar cambios
