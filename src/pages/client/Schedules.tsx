@@ -65,7 +65,7 @@ const Schedules = () => {
   }, [selectedWeek, uid]);
 
   const columns = [
-    { field: 'name', headerName: 'Empleado', width: 150 },
+    { field: 'name', headerName: 'Nombre', width: 150 },
     {
       field: 'monday',
       headerName: 'Lunes',
@@ -169,8 +169,9 @@ const Schedules = () => {
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
         <Typography variant="h6" component="label" sx={{ marginRight: 2 }}>
-          Selecciona una semana:
+          Semana:
         </Typography>
+
         <TextField
           type="week"
           value={selectedWeek}

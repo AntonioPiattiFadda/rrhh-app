@@ -4,12 +4,12 @@
   display: none;
   justify-content: center;
 
-  background-color: var(--background-color);
+  background-color: white;
   color: white;
   padding: 1rem 0rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   width: 100vw;
-  z-index: 700;
+  z-index: 1100;
 }
 .navbar {
   display: flex;

@@ -49,24 +49,30 @@ const Employees = () => {
 
         setEmployees(res);
         res.map((employee) => {
-          // console.log(employee);
+          console.log(employee);
 
           const scheduleByMonth = groupSchedulesByMonth(
             employee,
             employee.hour_value
           );
-          // console.log(scheduleByMonth);
+          console.log(scheduleByMonth);
 
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const history: { date: string; employeeId: any; amount: string }[] =
-            [];
+          const history: {
+            date: string;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            totalHours: any;
+            hourValue: string;
+            totalMonthlyPayment?: number;
+          }[] = [];
           scheduleByMonth.schedulesByMonth.map(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (schedule: { month: any; totalHours: any }) => {
+              console.log(schedule);
+
               history.push({
                 date: schedule.month,
-                employeeId: schedule.totalHours,
-                amount: employee.hour_value,
+                totalHours: schedule.totalHours,
+                hourValue: employee.hour_value,
               });
             }
           );
@@ -77,7 +83,7 @@ const Employees = () => {
               356,
               16.0,
               49,
-              3.9, 
+              3.9,
               1.5,
               employee.nickname,
               employee.password,

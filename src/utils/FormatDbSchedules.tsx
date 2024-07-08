@@ -74,10 +74,15 @@ export const groupSchedulesByMonth = (
 
   // Calcular horas totales y valor a liquidar por cada mes
   Object.values(monthsMap).forEach((summary) => {
+    console.log(summary);
+    //NOTE - Hasta aca esta todo perfecto
+
     const { schedules } = summary;
 
     const { totalHours, totalMinutes } =
       calculateTotalHoursAndMinutes(schedules);
+    console.log(totalHours, totalMinutes);
+
     summary.totalHours = totalHours;
     summary.totalMinutes = totalMinutes;
     summary.totalPay = calculatePay(totalHours, totalMinutes, hourlyRate);
@@ -95,57 +100,29 @@ export const groupSchedulesByMonth = (
 const calculateTotalHoursAndMinutes = (
   schedules: Schedule[]
 ): { totalHours: number; totalMinutes: number } => {
-  let totalHours = 0;
-  let totalMinutes = 0;
+  let minutes = 0;
 
-  // Primero agrupar los schedules por día
-  const dailySchedules: {
-    [key: string]: { entryTime: Date | null; endTime: Date | null };
-  } = {};
+  // Ordenamos los schedules por fecha
+  schedules.sort((a, b) => a.date.getTime() - b.date.getTime());
 
-  schedules.forEach((schedule) => {
-    const dateKey = schedule.date.toISOString().split('T')[0]; // Usar la fecha como clave (YYYY-MM-DD)
-    if (!dailySchedules[dateKey]) {
-      dailySchedules[dateKey] = { entryTime: null, endTime: null };
-    }
+  // Variable para almacenar la última entrada
+  let lastEntry: Date | null = null;
 
+  for (const schedule of schedules) {
     if (schedule.type === 'entry') {
-      dailySchedules[dateKey].entryTime = schedule.date;
-    } else if (schedule.type === 'end') {
-      dailySchedules[dateKey].endTime = schedule.date;
+      lastEntry = schedule.date;
+    } else if (schedule.type === 'end' && lastEntry) {
+      // Calculamos la diferencia en minutos
+      const diffInMinutes =
+        (schedule.date.getTime() - lastEntry.getTime()) / 60000;
+      minutes += diffInMinutes;
+      lastEntry = null; // Reseteamos la última entrada
     }
-  });
-
-  // Calcular las horas y minutos totales por día
-  Object.keys(dailySchedules).forEach((dateKey) => {
-    const { entryTime, endTime } = dailySchedules[dateKey];
-
-    if (entryTime && endTime) {
-      const entryTimeMillis = entryTime.getTime();
-      const endTimeMillis = endTime.getTime();
-      const diffMillis = endTimeMillis - entryTimeMillis;
-
-      if (diffMillis > 0) {
-        const diffMinutes = diffMillis / (1000 * 60); // Convertir a minutos
-
-        totalHours += Math.floor(diffMinutes / 60); // Sumar las horas completas
-        totalMinutes += diffMinutes % 60; // Sumar los minutos restantes
-      }
-    }
-  });
-
-  // Redondear totalMinutes a dos decimales
-  totalMinutes = Math.round(totalMinutes * 100) / 100;
-
-  // Ajustar los minutos si superan 60
-  if (totalMinutes >= 60) {
-    const additionalHours = Math.floor(totalMinutes / 60);
-    totalHours += additionalHours;
-    totalMinutes -= additionalHours * 60;
   }
 
-  // Redondear totalHours a dos decimales
-  totalHours = Math.round(totalHours * 100) / 100;
+  // Convertimos el total de minutos en horas y minutos
+  const totalHours = Math.floor(minutes / 60);
+  const totalMinutes = minutes % 60;
 
   return { totalHours, totalMinutes };
 };

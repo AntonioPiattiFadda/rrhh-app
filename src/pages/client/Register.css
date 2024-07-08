@@ -22,3 +22,9 @@
 .buttonContainer button {
   width: 50%;
 }
+
+@media screen and (max-width: 480px) {
+  .insertNameForm {
+    padding-bottom: 10vh;
+  }
+}

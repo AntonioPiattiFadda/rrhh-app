@@ -95,7 +95,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                       <TableCell component="th" scope="row">
                         {historyRow.date}
                       </TableCell>
-                      <TableCell>{historyRow.totalHoursWorked}</TableCell>
+                      <TableCell>{historyRow.employeeId}</TableCell>
                       <TableCell align="right">{historyRow.amount}</TableCell>
                       <TableCell align="right">
                         {Math.round(

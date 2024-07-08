@@ -70,6 +70,17 @@ const AdminNavbar = () => {
               Horarios
             </Link>
           </li>
+          <li>
+            <Link
+              style={{
+                color:
+                  location.pathname === `/admin/control` ? '#397cbb' : 'black',
+              }}
+              to={`/admin/control`}
+            >
+              Control
+            </Link>
+          </li>
         </ul>
       </nav>
       <nav className="navbarMobile">

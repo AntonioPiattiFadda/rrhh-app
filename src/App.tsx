@@ -10,6 +10,7 @@ import Employees from './pages/admin/Employees';
 import ScheduleSelector from './pages/admin/ScheduleSelector';
 import Schedules from './pages/client/Schedules';
 import ClientNavbar from './components/client/Navbar';
+import Control from './pages/admin/Control';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/admin/employees" element={<Employees />} />
         <Route path="/admin/schedules" element={<ScheduleSelector />} />
+        <Route path="/admin/control" element={<Control />} />
 
         <Route path="/client/schedules" element={<Schedules />} />
         <Route path="/client/register" element={<Register />} />
