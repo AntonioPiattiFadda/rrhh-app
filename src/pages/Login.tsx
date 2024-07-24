@@ -15,6 +15,7 @@ const Login = () => {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<z.ZodError | null>(null);
+  const [loginError, setLoginError] = useState<string | null>(null);
 
   const auth = getAuth();
 
@@ -43,6 +44,11 @@ const Login = () => {
           });
         })
         .catch((error) => {
+          setLoading(false);
+          setLoginError(error.message);
+          setTimeout(() => {
+            setLoginError(null);
+          }, 3000);
           // const errorCode = error.code;
           // const errorMessage = error.message;
           console.error('Error al iniciar sesión:', error);
@@ -85,6 +91,18 @@ const Login = () => {
             errors?.issues[0]?.message
           }
         />
+        {loginError && (
+          <p
+            style={{
+              color: 'red',
+              fontSize: '0.8rem',
+              textAlign: 'center',
+              marginBottom: '10px',
+            }}
+          >
+            {loginError}
+          </p>
+        )}
 
         <Button
           disabled={loading}

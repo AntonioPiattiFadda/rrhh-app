@@ -9,6 +9,7 @@ import {
   formatWeeklySchedules,
   getWeekSchedule,
 } from '../../utils/FormatDbSchedules';
+import { getCurrentWeek } from '../../utils';
 
 // import './Schedules.css';
 
@@ -17,6 +18,11 @@ const Schedules = () => {
   const [selectedWeek, setSelectedWeek] = useState('2024-W25');
   const [rows, setRows] = useState<ScheduleDataTableRowType[]>([]);
   const uid = sessionStorage.getItem('uid');
+
+  useEffect(() => {
+    const currentWeek = getCurrentWeek();
+    setSelectedWeek(currentWeek);
+  }, []);
 
   useEffect(() => {
     if (!uid) return;
